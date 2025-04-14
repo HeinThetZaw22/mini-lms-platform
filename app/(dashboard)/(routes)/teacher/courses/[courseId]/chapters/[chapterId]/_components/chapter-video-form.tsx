@@ -54,6 +54,7 @@ const ChapterVideoForm = ({
       toast.success("Chapter updated");
       toggleEdit();
       router.refresh();
+      router.push(`/teacher/courses/${courseId}`);
     } catch (error) {
       toast.error("Something went wrong");
     }
@@ -86,10 +87,7 @@ const ChapterVideoForm = ({
           </div>
         ) : (
           <div className=" relative aspect-video mt-2">
-            <MuxPlayer
-              playbackId={initialData?.muxData?.playbackId || ""}
-              
-            />
+            <MuxPlayer playbackId={initialData?.muxData?.playbackId || ""} />
           </div>
         ))}
       {isEditing && (
