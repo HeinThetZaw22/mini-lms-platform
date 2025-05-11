@@ -1,15 +1,11 @@
 "use client";
 
-import * as z from "zod";
 import axios from "axios";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { Course } from "@prisma/client";
 import Image from "next/image";
 import { FileUpload } from "@/components/file-upload";
@@ -19,11 +15,9 @@ interface ImageFormProps {
   courseId: string;
 }
 
-const formSchema = z.object({
-  imageUrl: z.string().min(1, {
-    message: "Image is required",
-  }),
-});
+type FormValues = {
+  imageUrl: string;
+};
 
 const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -31,16 +25,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 
   const toggleEdit = () => setIsEditing((current) => !current);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      imageUrl: initialData?.imageUrl || "",
-    },
-  });
-
-  const { isSubmitting, isValid } = form.formState;
-
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     console.log(values);
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
@@ -49,6 +34,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
       router.refresh();
     } catch (error) {
       toast.error("Something went wrong");
+      console.log(error);
     }
   };
 
@@ -79,7 +65,12 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
           </div>
         ) : (
           <div className=" relative aspect-video mt-2">
-            <Image alt="upload" className=" rounded-sm" fill src={initialData.imageUrl} />
+            <Image
+              alt="upload"
+              className=" rounded-sm"
+              fill
+              src={initialData.imageUrl}
+            />
           </div>
         ))}
       {isEditing && (

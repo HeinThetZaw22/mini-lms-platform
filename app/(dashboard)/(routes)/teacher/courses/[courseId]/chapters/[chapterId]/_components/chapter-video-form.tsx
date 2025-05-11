@@ -5,13 +5,11 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { ImageIcon, Pencil, PlusCircle, Video } from "lucide-react";
+import { Pencil, PlusCircle, Video } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { Chapter, MuxData } from "@prisma/client";
-import Image from "next/image";
 import { FileUpload } from "@/components/file-upload";
 import MuxPlayer from "@mux/mux-player-react";
 
@@ -41,8 +39,7 @@ const ChapterVideoForm = ({
       videoUrl: initialData?.videoUrl || "",
     },
   });
-
-  const { isSubmitting, isValid } = form.formState;
+  console.log(form);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
@@ -57,6 +54,7 @@ const ChapterVideoForm = ({
       // router.push(`/teacher/courses/${courseId}`);
     } catch (error) {
       toast.error("Something went wrong");
+      console.log(error);
     }
   };
 
@@ -104,7 +102,7 @@ const ChapterVideoForm = ({
             }}
           />
           <div className=" text-xs text-muted-foreground mt-4">
-            Upload this chapter's video
+            Upload this chapter&apos;s video
           </div>
         </div>
       )}

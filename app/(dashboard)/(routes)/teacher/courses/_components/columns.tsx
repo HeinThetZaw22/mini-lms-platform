@@ -48,7 +48,7 @@ export const columns: ColumnDef<Course>[] = [
         currency: "USD",
       }).format(price);
 
-      return <div className=" text-center font-medium">{price}</div>;
+      return <div className=" text-center font-medium">{formatted}</div>;
     },
   },
   {

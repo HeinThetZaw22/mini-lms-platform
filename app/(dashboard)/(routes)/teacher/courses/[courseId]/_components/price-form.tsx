@@ -9,7 +9,6 @@ import {
   Form,
   FormControl,
   FormMessage,
-  FormLabel,
   FormField,
   FormItem,
 } from "@/components/ui/form";
@@ -56,6 +55,7 @@ const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
       router.refresh();
     } catch (error) {
       toast.error("Something went wrong");
+      console.log(error);
     }
   };
 

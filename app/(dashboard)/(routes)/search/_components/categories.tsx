@@ -4,7 +4,6 @@ import {
   FcEngineering,
   FcFilmReel,
   FcMultipleDevices,
-  FcMultipleInputs,
   FcMusic,
   FcOldTimeCamera,
   FcSalesPerformance,

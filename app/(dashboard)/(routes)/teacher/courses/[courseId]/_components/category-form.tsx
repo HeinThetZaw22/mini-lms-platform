@@ -9,7 +9,6 @@ import {
   Form,
   FormControl,
   FormMessage,
-  FormLabel,
   FormField,
   FormItem,
 } from "@/components/ui/form";
@@ -19,7 +18,6 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 import { Course } from "@prisma/client";
 import { Combobox } from "@/components/ui/combobox";
 
@@ -61,6 +59,7 @@ const CategoryForm = ({
       router.refresh();
     } catch (error) {
       toast.error("Something went wrong");
+      console.log(error);
     }
   };
 

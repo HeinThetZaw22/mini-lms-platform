@@ -20,8 +20,7 @@ export const ourFileRouter = {
     .middleware(() => handleAuth())
     .onUploadComplete(async ({ file, metadata }) => {
       try {
-        console.log("File uploaded:", file);
-        console.log("Uploaded file URL:", file.url);
+        console.log(metadata, file);
       } catch (error) {
         console.error("Error in upload completion:", error);
         throw new UploadThingError("Error during upload completion");

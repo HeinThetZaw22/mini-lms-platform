@@ -9,17 +9,15 @@ import {
   Form,
   FormControl,
   FormMessage,
-  FormLabel,
   FormField,
   FormItem,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { Loader2, Pencil, PlusCircle } from "lucide-react";
+import { Loader2, PlusCircle } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 import { Chapter, Course } from "@prisma/client";
 import { Input } from "@/components/ui/input";
 import ChaptersList from "./chapters-list";
@@ -61,6 +59,7 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       router.refresh();
     } catch (error) {
       toast.error("Something went wrong");
+      console.log(error);
     }
   };
 
@@ -74,6 +73,7 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       router.refresh();
     } catch (error) {
       toast.error("Something went wrong");
+      console.log(error);
     } finally {
       setIsUpdating(false);
     }

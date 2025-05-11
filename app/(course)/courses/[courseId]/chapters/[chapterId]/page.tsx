@@ -33,15 +33,13 @@ const ChapterIdPage = async ({
     chapterId: params.chapterId,
   });
 
-  if (!chapter || !course) {
+  if (!chapter || !course || !muxData?.playbackId) {
     return redirect("/");
   }
 
-  console.log("userP", userProgress);
-  console.log("chpter", chapter);
-
   const isLocked = !chapter.isFree && !purchase;
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
+  const playbackId = muxData.playbackId;
 
   return (
     <div>
@@ -64,7 +62,7 @@ const ChapterIdPage = async ({
             courseId={params.courseId}
             title={chapter.title}
             nextChapterId={nextChapter?.id}
-            playbackId={muxData?.playbackId!}
+            playbackId={playbackId}
             isLocked={isLocked}
             completeOnEnd={completeOnEnd}
           />

@@ -45,7 +45,7 @@ const CreatePage = () => {
       toast.success("Course created successfully");
     } catch (error) {
       toast.error("Something went wrong");
-      console.log("something went wrong");
+      console.log(error);
     }
   };
 

@@ -35,6 +35,7 @@ const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       router.refresh();
     } catch (error) {
       toast.error("Something went wrong");
+      console.log("publish error", error);
     } finally {
       setIsLoading(false);
     }
@@ -49,6 +50,7 @@ const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       router.push(`/teacher/courses`);
     } catch (error) {
       toast.error("Something went wrong");
+      console.log("delete error", error);
     } finally {
       setIsLoading(false);
     }

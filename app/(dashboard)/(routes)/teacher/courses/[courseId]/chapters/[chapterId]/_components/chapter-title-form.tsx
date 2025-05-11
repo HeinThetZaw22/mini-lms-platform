@@ -9,7 +9,6 @@ import {
   Form,
   FormControl,
   FormMessage,
-  FormLabel,
   FormField,
   FormItem,
 } from "@/components/ui/form";
@@ -54,6 +53,7 @@ const ChapterTitleForm = ({ initialData, courseId, chapterId }: ChapterTitleForm
       router.refresh();
     } catch (error) {
       toast.error("Something went wrong");
+      console.log(error);
     }
   };
 

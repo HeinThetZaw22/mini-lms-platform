@@ -9,18 +9,20 @@ interface EditorProps {
   onChange: (value: string) => void;
 }
 
-const Editor = forwardRef<any, EditorProps>(({ value, onChange }, ref) => {
-  const ReactQuill = useMemo(
-    () => dynamic(() => import("react-quill-new"), { ssr: false }),
-    []
-  );
+const Editor = forwardRef<HTMLDivElement, EditorProps>(
+  ({ value, onChange }, ref) => {
+    const ReactQuill = useMemo(
+      () => dynamic(() => import("react-quill-new"), { ssr: false }),
+      []
+    );
 
-  return (
-    <div ref={ref} className=" bg-white">
-      <ReactQuill theme="snow" value={value} onChange={onChange} />
-    </div>
-  );
-});
+    return (
+      <div ref={ref} className=" bg-white">
+        <ReactQuill theme="snow" value={value} onChange={onChange} />
+      </div>
+    );
+  }
+);
 
 Editor.displayName = "Editor";
 export { Editor };

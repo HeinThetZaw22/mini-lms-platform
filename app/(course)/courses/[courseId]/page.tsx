@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
-import React from "react";
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const course = await db.course.findUnique({
@@ -19,7 +18,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     },
   });
 
-  if (!course) {
+  if (!course || course.chapters.length === 0) {
     return redirect("/");
   }
 
