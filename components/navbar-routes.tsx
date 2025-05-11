@@ -34,8 +34,8 @@ const NavbarRoutes = () => {
           </Link>
         ) : isTeacher(userId) ? (
           <Link href={"/teacher/courses"}>
-            <Button size={"sm"} variant={"ghost"}>
-              Teacher mode
+            <Button size={"sm"} variant={"outline"}>
+              Create Own Course
             </Button>
           </Link>
         ) : null}
