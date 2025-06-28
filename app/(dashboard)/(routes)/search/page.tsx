@@ -6,6 +6,7 @@ import { getCourses } from "@/actions/get-courses";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { CoursesList } from "@/components/courses-list";
+import Loader from "@/components/loader";
 
 interface SearchPageProps {
   searchParams: {
@@ -35,7 +36,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
     <>
       <div className=" px-6 pt-6 md:hidden block">
         {/* Wrap the entire content, including SearchInput, in Suspense */}
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <SearchInput />
         </Suspense>
       </div>
@@ -49,7 +50,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
 
 // Wrap the entire SearchPage in Suspense as well
 const SuspendedSearchPage = (props: SearchPageProps) => (
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={<Loader />}>
     <SearchPage {...props} />
   </Suspense>
 );

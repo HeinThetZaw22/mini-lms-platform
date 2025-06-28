@@ -1,10 +1,11 @@
 import React, { Suspense } from "react";
 import Sidebar from "./_components/sidebar";
 import Navbar from "./_components/navbar";
+import Loader from "@/components/loader";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <div className=" h-full">
         <div className=" h-[80px] md:pl-56 fixed inset-y-0 w-full z-50">
           <Navbar />
